@@ -14,12 +14,12 @@ const projects = [
       technologies: ['React', 'useState', 'CSS'],
       github: 'https://github.com/nalahmad9/Checkout',
     },
-    /*{
+    {
       name: 'Portfolio Website',
       description: 'This very site — component-based, responsive, built with React.',
       technologies: ['React', 'CSS'],
-      github: 'https://github.com/yourusername/my-portfolio',
-    },*/
+      github: 'https://github.com/nalahmad9/My-Portfolio',
+    },
   ]
 
   return (
