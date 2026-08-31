@@ -1,20 +1,18 @@
 import Hero from '../sections/Hero'
 import About from '../sections/About'
-import Technologies from '../sections/Technologies'
+import Experience from '../sections/Experience'
 import Skills from '../sections/Skills'
 import Projects from '../sections/Projects'
-import HireMe from '../sections/HireMe'
 import Contact from '../sections/Contact'
 
 function Home() {
   return (
-    <div>
+    <div className="space-y-12">
       <Hero />
       <About />
-      <Technologies />
-      <Skills />
       <Projects />
-      <HireMe />
+      <Skills />
+      <Experience />
       <Contact />
     </div>
   )

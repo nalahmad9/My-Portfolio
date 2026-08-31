@@ -1,7 +1,14 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* Theme variable definitions for Tailwind v4 */
+@theme {
+  --color-skin-light: #f4e3d7;
+  --color-skin: #e0c5b0;
+  --color-skin-dark: #8c6d58;
+  --color-brand-red: #dc2626;
+  --color-brand-dark: #0d0d0d;
 }
 
 html {
@@ -9,483 +16,48 @@ html {
 }
 
 body {
-  font-family: 'Segoe UI', sans-serif;
-  background-color: #f9f9f9;
-  color: #333;
+  /* Softened light-mode background (slightly darker than bright pure white) */
+  background-color: #f8fafc;
+  color: #1c1917; /* Warm dark stone for readable text */
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-
-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px 60px;
-  background-color: #ffffff;
-  border-bottom: 1px solid #eee;
-  position: sticky;
-  top: 0;
-  z-index: 100;
+/* Base Dark Mode override */
+:root.dark body {
+  background-color: #0d0d0d; /* Pure dark matching your palette */
+  color: #f5f5f4;
 }
 
-header h1 {
-  font-size: 24px;
-  color: #534AB7;
+/* Custom Scrollbar Styles */
+::-webkit-scrollbar {
+  width: 8px;
 }
 
-nav {
-  display: flex;
-  gap: 30px;
+::-webkit-scrollbar-track {
+  background: transparent;
 }
 
-nav a {
-  text-decoration: none;
-  color: #333;
-  font-size: 15px;
+::-webkit-scrollbar-thumb {
+  background: #a8a29e;
+  border-radius: 4px;
 }
 
-nav a:hover {
-  color: #534AB7;
+:root.dark ::-webkit-scrollbar-thumb {
+  background: #292524;
 }
 
-
-.hero {
-  padding: 80px 60px;
-  background-color: #f0effe;
-}
-
-.hero-content {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 40px;
-  max-width: 1100px;
-  margin: 0 auto;
-}
-
-.hero-text {
-  flex: 1;
-  text-align: left;
-}
-
-.hero-text h1 {
-  font-size: 48px;
-  color: #534AB7;
-  margin-bottom: 10px;
-}
-
-.hero-text h2 {
-  font-size: 22px;
-  font-weight: 400;
-  color: #555;
-  margin-bottom: 16px;
-}
-
-.hero-text p {
-  font-size: 16px;
-  color: #666;
-  max-width: 500px;
-  line-height: 1.7;
-  margin-bottom: 30px;
-}
-
-.hero-buttons {
-  display: flex;
-  gap: 12px;
-}
-
-.hero-image {
-  flex: 1;
-  display: flex;
-  justify-content: center;
-}
-
-.hero-image img {
-  width: 300px;
-  height: 300px;
-  object-fit: cover;
-  border-radius: 50%;
-  border: 4px solid #534AB7;
-}
-
-.btn-primary {
-  background-color: #534AB7;
-  color: white;
-  border: none;
-  padding: 12px 28px;
-  border-radius: 8px;
-  font-size: 15px;
-  cursor: pointer;
-  margin-right: 10px;
-}
-
-.btn-outline {
-  background-color: transparent;
-  color: #534AB7;
-  border: 2px solid #534AB7;
-  padding: 12px 28px;
-  border-radius: 8px;
-  font-size: 15px;
-  cursor: pointer;
-}
-
-.btn-primary:hover {
-  background-color: #3d35a0;
-}
-
-.btn-outline:hover {
-  background-color: #534AB7;
-  color: white;
-}
-
-
-section {
-  padding: 60px 60px;
-  border-bottom: 1px solid #eee;
-}
-
-section h2 {
-  font-size: 28px;
-  color: #534AB7;
-  margin-bottom: 20px;
-}
-
-section p {
-  font-size: 15px;
-  line-height: 1.8;
-  color: #555;
-}
-
-
-.tech-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 16px;
-  margin-top: 10px;
-}
-
-.tech-chip {
-  background-color: #ffffff;
-  border: 1px solid #e0e0e0;
-  border-radius: 8px;
-  padding: 16px;
-  text-align: center;
-  font-size: 14px;
-  font-weight: 500;
-  color: #333;
-}
-
-
-.skills-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 16px;
-}
-
-.skill-card {
-  background-color: #ffffff;
-  border: 1px solid #e0e0e0;
-  border-radius: 8px;
-  padding: 20px;
-}
-
-.skill-card h3 {
-  font-size: 16px;
-  color: #534AB7;
-  margin-bottom: 10px;
-}
-
-.skill-card ul {
-  list-style: none;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-}
-
-.skill-card ul li {
-  background-color: #f0effe;
-  color: #534AB7;
-  font-size: 13px;
-  padding: 4px 12px;
-  border-radius: 20px;
-}
-
-
-.projects-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 20px;
-}
-
-.project-card {
-  background-color: #ffffff;
-  border: 1px solid #e0e0e0;
-  border-radius: 12px;
-  padding: 24px;
-}
-
-.project-card h3 {
-  font-size: 18px;
-  color: #333;
-  margin-bottom: 8px;
-}
-
-.project-card p {
-  font-size: 14px;
-  color: #666;
-  margin-bottom: 12px;
-}
-
-.project-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-  margin-bottom: 16px;
-}
-
-.project-tags span {
-  background-color: #f0effe;
-  color: #534AB7;
-  font-size: 12px;
-  padding: 4px 10px;
-  border-radius: 20px;
-}
-
-.project-card a {
-  color: #534AB7;
-  text-decoration: none;
-  font-size: 14px;
-  font-weight: 500;
-}
-
-.project-card a:hover {
-  text-decoration: underline;
-}
-
-
-.hire-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 16px;
-}
-
-.hire-card {
-  background-color: #ffffff;
-  border: 1px solid #e0e0e0;
-  border-radius: 8px;
-  padding: 20px;
-}
-
-.hire-card h3 {
-  font-size: 16px;
-  color: #534AB7;
-  margin-bottom: 8px;
-}
-
-.hire-card p {
-  font-size: 14px;
-  color: #666;
-}
-
-
-.contact-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
-}
-
-.contact-card {
-  background-color: #ffffff;
-  border: 1px solid #e0e0e0;
-  border-radius: 8px;
-  padding: 20px;
-}
-
-.contact-card h3 {
-  font-size: 15px;
-  color: #534AB7;
-  margin-bottom: 8px;
-}
-
-.contact-card a {
-  color: #333;
-  text-decoration: none;
-  font-size: 14px;
-}
-
-.contact-card a:hover {
-  color: #534AB7;
-}
-
-
-footer {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 24px 60px;
-  background-color: #ffffff;
-  border-top: 1px solid #eee;
-}
-
-footer p {
-  font-size: 14px;
-  color: #999;
-}
-
-footer a {
-  text-decoration: none;
-  color: #534AB7;
-  font-size: 14px;
-  margin-left: 16px;
-}
-
-footer a:hover {
-  text-decoration: underline;
-}
-
-
-
-@media (max-width: 1024px) {
-  header {
-    padding: 20px 30px;
+/* Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
   }
-
-  .hero {
-    padding: 60px 30px;
-  }
-
-  section {
-    padding: 50px 30px;
-  }
-
-  footer {
-    padding: 24px 30px;
-  }
-
-  .tech-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-
-  .hero-image img {
-    width: 250px;
-    height: 250px;
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
-
-@media (max-width: 768px) {
-
-  /* HEADER */
-  header {
-    flex-direction: column;
-    gap: 16px;
-    padding: 16px 20px;
-    text-align: center;
-  }
-
-  nav {
-    gap: 16px;
-  }
-
-
-  .hero {
-    padding: 40px 20px;
-  }
-
-  .hero-content {
-    flex-direction: column-reverse;
-    text-align: center;
-  }
-
-  .hero-text {
-    text-align: center;
-  }
-
-  .hero-text h1 {
-    font-size: 32px;
-  }
-
-  .hero-text h2 {
-    font-size: 18px;
-  }
-
-  .hero-text p {
-    font-size: 14px;
-  }
-
-  .hero-buttons {
-    justify-content: center;
-  }
-
-  .hero-image img {
-    width: 200px;
-    height: 200px;
-  }
-
-
-  section {
-    padding: 40px 20px;
-  }
-
-  section h2 {
-    font-size: 22px;
-  }
-
-
-  .tech-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  /* SKILLS */
-  .skills-grid {
-    grid-template-columns: 1fr;
-  }
-
-
-  .projects-grid {
-    grid-template-columns: 1fr;
-  }
-
-
-  .hire-grid {
-    grid-template-columns: 1fr;
-  }
-
-
-  .contact-grid {
-    grid-template-columns: 1fr;
-  }
-
-
-  footer {
-    flex-direction: column;
-    gap: 12px;
-    text-align: center;
-    padding: 20px;
-  }
-
-  footer a {
-    margin-left: 8px;
-  }
-}
-
-
-@media (max-width: 480px) {
-  .hero-text h1 {
-    font-size: 26px;
-  }
-
-  .hero-image img {
-    width: 160px;
-    height: 160px;
-  }
-
-  .btn-primary,
-  .btn-outline {
-    padding: 10px 18px;
-    font-size: 13px;
-  }
-
-  .tech-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
+.animate-fade-in {
+  animation: fadeInUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
