@@ -168,7 +168,7 @@ function About() {
           <motion.a
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            href="/Nada_Alahmad_Resume.pdf"
+            href="/Nad _Alahmad_Resume.pdf"
             target="_blank"
             rel="noreferrer"
             className="w-full bg-red-600 hover:bg-red-700 text-white text-sm font-semibold py-3 px-4 rounded-xl transition-colors flex items-center justify-center gap-2 shadow-lg shadow-red-600/20"
