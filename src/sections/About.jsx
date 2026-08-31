@@ -41,7 +41,7 @@ function About() {
             </p>
           </motion.div>
 
-          {/* Cards Grid: Education & Experience (pt-4 added to let bio breathe) */}
+          {/* Cards Grid: Education & Experience */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-4">
             {/* Education Card */}
             <motion.div
@@ -129,8 +129,8 @@ function About() {
           transition={{ duration: 0.5, delay: 0.3 }}
           className="lg:col-span-4 flex flex-col items-center text-center bg-white dark:bg-[#0D0D0D]/80 border border-gray-200 dark:border-gray-800/80 rounded-2xl p-8 shadow-sm"
         >
-          {/* Avatar Container */}
-          <div className="relative mb-6 group cursor-pointer">
+          {/* Avatar Container with Updated Spacing */}
+          <div className="relative mb-8 group cursor-pointer">
             <div className="w-40 h-40 sm:w-48 sm:h-48 rounded-full ring-8 ring-red-500/20 dark:ring-red-500/25 overflow-hidden transition-transform duration-300 ease-out group-hover:scale-105">
               <img
                 src={profileImg}
@@ -140,7 +140,7 @@ function About() {
             </div>
 
             {/* Badge */}
-            <span className="absolute -bottom-2 left-1/2 -translate-x-1/2 bg-red-600 text-white text-xs font-semibold px-3 py-1 rounded-full shadow-md whitespace-nowrap border-2 border-white dark:border-[#0D0D0D]">
+            <span className="absolute -bottom-3 left-1/2 -translate-x-1/2 bg-red-600 text-white text-xs font-semibold px-3 py-1 rounded-full shadow-md whitespace-nowrap border-2 border-white dark:border-[#0D0D0D]">
               Full Stack Dev
             </span>
           </div>
