@@ -1,30 +1,32 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ArrowRight } from 'lucide-react';
+import { ArrowLeft } from 'lucide-react';
 import ProjectCard from '../components/ProjectCard';
 import projects from '../data/projects';
 
-function Projects() {
-  const featuredProjects = projects.slice(0, 4);
+function ProjectsPage() {
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, []);
 
   return (
-    <section id="projects" className="px-6 py-12 border-b border-stone-200/80 dark:border-stone-800/60 max-w-7xl mx-auto">
-      {/* Centered Badge Header */}
+    <section className="px-6 py-12 max-w-7xl mx-auto min-h-[70vh]">
+      {/* Badge Header - same style as Projects section */}
       <div className="text-center mb-10">
         <span className="inline-block px-3 py-1 bg-red-100 text-red-600 dark:bg-red-950/40 dark:text-red-400 text-xs font-semibold rounded-full mb-3 uppercase tracking-wider">
           My Work
         </span>
         <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white tracking-tight">
-          Project Experience
+          All Projects
         </h2>
         <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 mt-2 max-w-xl mx-auto">
-          A selection of full-stack web applications and interactive software built recently.
+          Complete list of full-stack web applications and interactive software.
         </p>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        {featuredProjects.map((project) => (
+        {projects.map((project) => (
           <ProjectCard key={project.name} {...project} />
         ))}
       </div>
@@ -32,10 +34,10 @@ function Projects() {
       <div className="flex justify-center mt-10">
         <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>
           <Link
-            to="/projects"
-            className="inline-flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white text-sm font-semibold px-6 py-3 rounded-xl shadow-md shadow-red-600/20 transition-colors"
+            to="/"
+            className="inline-flex items-center gap-2 bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 text-stone-700 dark:text-stone-300 hover:text-red-600 dark:hover:text-red-500 hover:border-red-600/50 text-sm font-semibold px-6 py-3 rounded-xl shadow-sm hover:shadow-md transition-all duration-200"
           >
-            See all projects <ArrowRight width={16} height={16} />
+            <ArrowLeft width={16} height={16} /> Back to Home
           </Link>
         </motion.div>
       </div>
@@ -43,4 +45,4 @@ function Projects() {
   );
 }
 
-export default Projects;
+export default ProjectsPage;

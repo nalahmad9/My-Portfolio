@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Sun, Moon, Download, Menu, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useTheme } from '../context/ThemeContext';
@@ -6,34 +7,64 @@ import { useTheme } from '../context/ThemeContext';
 function Header() {
   const { theme, toggleTheme } = useTheme();
   const [isOpen, setIsOpen] = useState(false);
+  const location = useLocation();
+  const navigate = useNavigate();
 
   const navLinks = [
-    { name: 'About', href: '#about' },
-    { name: 'Projects', href: '#projects' },
-    { name: 'Skills', href: '#skills' },
-    { name: 'Contact', href: '#contact' },
+    { name: 'About', href: '#about', isRoute: false },
+    { name: 'Projects', href: '#projects', isRoute: false },
+    { name: 'Skills', href: '#skills', isRoute: false },
+    { name: 'Contact', href: '#contact', isRoute: false },
   ];
+
+  const handleHashClick = (e, href) => {
+    e.preventDefault();
+    setIsOpen(false);
+    const id = href.replace('#', '');
+    if (location.pathname !== '/') {
+      navigate(`/${href}`);
+      // wait for navigation then scroll
+      setTimeout(() => {
+        document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+      }, 100);
+    } else {
+      document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+      // update URL hash without reload
+      window.history.pushState(null, '', href);
+    }
+  };
 
   return (
     <header className="sticky top-0 z-50 backdrop-blur-md bg-[#f8fafc]/80 dark:bg-[#0D0D0D]/80 border-b border-stone-200/80 dark:border-stone-800/80 transition-colors">
       <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
         
         {/* Logo */}
-        <a href="#home" className="text-lg font-bold text-stone-900 dark:text-white tracking-tight">
+        <Link to="/" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="text-lg font-bold text-stone-900 dark:text-white tracking-tight">
           Nada<span className="text-red-600">.dev</span>
-        </a>
+        </Link>
 
         {/* Desktop Nav */}
         <nav className="hidden md:flex items-center gap-8">
-          {navLinks.map((link) => (
-            <a
-              key={link.name}
-              href={link.href}
-              className="text-sm font-medium text-stone-600 dark:text-stone-300 hover:text-red-600 dark:hover:text-red-500 transition-colors"
-            >
-              {link.name}
-            </a>
-          ))}
+          {navLinks.map((link) =>
+            link.isRoute ? (
+              <Link
+                key={link.name}
+                to={link.href}
+                className="text-sm font-medium text-stone-600 dark:text-stone-300 hover:text-red-600 dark:hover:text-red-500 transition-colors"
+              >
+                {link.name}
+              </Link>
+            ) : (
+              <a
+                key={link.name}
+                href={link.href}
+                onClick={(e) => handleHashClick(e, link.href)}
+                className="text-sm font-medium text-stone-600 dark:text-stone-300 hover:text-red-600 dark:hover:text-red-500 transition-colors cursor-pointer"
+              >
+                {link.name}
+              </a>
+            )
+          )}
         </nav>
 
         {/* Actions */}
@@ -79,16 +110,27 @@ function Header() {
             className="md:hidden border-b border-stone-200 dark:border-stone-800 bg-[#f8fafc] dark:bg-[#0D0D0D]"
           >
             <div className="px-6 py-4 flex flex-col gap-4">
-              {navLinks.map((link) => (
-                <a
-                  key={link.name}
-                  href={link.href}
-                  onClick={() => setIsOpen(false)}
-                  className="text-sm font-medium text-stone-600 dark:text-stone-300 hover:text-red-600"
-                >
-                  {link.name}
-                </a>
-              ))}
+              {navLinks.map((link) =>
+                link.isRoute ? (
+                  <Link
+                    key={link.name}
+                    to={link.href}
+                    onClick={() => setIsOpen(false)}
+                    className="text-sm font-medium text-stone-600 dark:text-stone-300 hover:text-red-600"
+                  >
+                    {link.name}
+                  </Link>
+                ) : (
+                  <a
+                    key={link.name}
+                    href={link.href}
+                    onClick={(e) => handleHashClick(e, link.href)}
+                    className="text-sm font-medium text-stone-600 dark:text-stone-300 hover:text-red-600 cursor-pointer"
+                  >
+                    {link.name}
+                  </a>
+                )
+              )}
               
               {/* Mobile Animated Resume Link - opens in new tab for preview */}
               <motion.a

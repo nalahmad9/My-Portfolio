@@ -3,9 +3,14 @@ import React, { createContext, useContext, useEffect, useState } from 'react';
 const ThemeContext = createContext();
 
 export function ThemeProvider({ children }) {
-  const [theme, setTheme] = useState(
-    () => localStorage.getItem('theme') || 'dark'
-  );
+  // Always start in light mode; do not restore previous choice from localStorage
+  // so a page refresh always returns to the light default as requested.
+  const [theme, setTheme] = useState('light');
+
+  // Clear any stale persisted preference from the previous implementation
+  useEffect(() => {
+    localStorage.removeItem('theme');
+  }, []);
 
   useEffect(() => {
     const root = document.documentElement;
@@ -14,7 +19,6 @@ export function ThemeProvider({ children }) {
     } else {
       root.classList.remove('dark');
     }
-    localStorage.setItem('theme', theme);
   }, [theme]);
 
   const toggleTheme = () => {

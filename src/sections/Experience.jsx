@@ -31,13 +31,13 @@ const experiences = [
 
 function Experience() {
   return (
-    <section id="experience" className="py-20 px-6 max-w-7xl mx-auto">
+    <section id="experience" className="py-12 px-6 max-w-7xl mx-auto">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: '-100px' }}
         transition={{ duration: 0.5 }}
-        className="text-center mb-16"
+        className="text-center mb-10"
       >
         <span className="text-xs font-semibold uppercase tracking-wider text-red-600 bg-red-600/10 px-3 py-1 rounded-full border border-red-600/20">
           Career Journey

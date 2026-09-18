@@ -7,9 +7,9 @@ function About() {
   const skillsTags = ['React', 'Next.js', 'Node.js', 'Full Stack', 'Tailwind CSS'];
 
   return (
-    <section id="about" className="py-20 px-6 max-w-7xl mx-auto">
+    <section id="about" className="py-12 px-6 max-w-7xl mx-auto">
       {/* Centered Badge Header */}
-      <div className="text-center mb-12">
+      <div className="text-center mb-10">
         <span className="inline-block px-3 py-1 bg-red-100 text-red-600 dark:bg-red-950/40 dark:text-red-400 text-xs font-semibold rounded-full mb-3 uppercase tracking-wider">
           About Me
         </span>

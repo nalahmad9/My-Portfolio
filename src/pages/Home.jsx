@@ -7,7 +7,7 @@ import Contact from '../sections/Contact'
 
 function Home() {
   return (
-    <div className="space-y-12">
+    <div>
       <Hero />
       <About />
       <Projects />
